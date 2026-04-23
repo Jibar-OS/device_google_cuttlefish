@@ -42,11 +42,11 @@ launch_cvd --start_webrtc
 
 ## Non-Cuttlefish device trees
 
-The same pattern (small `device.mk` additions + sepolicy fragments) applies to any AOSP device tree. Contributions for additional devices welcome — see [`github.com/jibar-os/docs`](https://github.com/jibar-os/docs) for the porting guide.
+The same pattern (small `device.mk` additions + sepolicy fragments) applies to any AOSP device tree. Contributions for additional devices welcome — see [`github.com/Jibar-OS/jibar-os`](https://github.com/Jibar-OS/jibar-os) for the porting guide.
 
 ## See also
 
-[`github.com/jibar-os/docs`](https://github.com/jibar-os/docs) — JibarOS OEM bake-in guide.
+[`github.com/Jibar-OS/jibar-os`](https://github.com/Jibar-OS/jibar-os) — JibarOS OEM bake-in guide.
 
 ## Migration status
 
