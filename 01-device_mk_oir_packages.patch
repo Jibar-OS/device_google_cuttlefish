@@ -1,0 +1,28 @@
+diff --git a/shared/device.mk b/shared/device.mk
+index b31638a..9c0a77d 100644
+--- a/shared/device.mk
++++ b/shared/device.mk
+@@ -619,3 +619,23 @@ ifeq ($(LOCAL_ENABLE_INIT_DEV_CONFIG),true)
+     PRODUCT_VENDOR_PROPERTIES += \
+         ro.vendor.init_dev_config.path=/vendor/bin/init_dev_config
+ endif
++
++# OIR v0.2 — native inference worker + default model (Qwen 2.5 0.5B
++# Instruct Q4_K_M, Apache 2.0; declared in vendor/oir-models/Android.bp).
++# Installs to /product/etc/oir/. Dev-override: adb push a GGUF to
++# /data/local/oir/ to swap without rebuild (worker checks that path first).
++#
++# v0.6.9: bake the three "standard demo" companions too — MiniLM for
++# text.embed (24 MB), whisper-tiny.en for audio.transcribe (31 MB),
++# voice-sample.wav for the audio.transcribe demo input (720 KB). All
++# permissively licensed; together <60 MB. Without these the OirDemo
++# Fire All sees MODEL_MISSING / INVALID_INPUT on three tiles and the
++# bringup dance requires manual `adb push` of each, which doesn't
++# survive super.img rebuilds. See notes/POST_V0.6.9_NICE_TO_HAVES.md §B.
++PRODUCT_PACKAGES += \
++    oird \
++    oir_default_model \
++    oir_minilm_model \
++    oir_whisper_tiny_en_model \
++    oir_voice_sample_wav \
++    oir_capabilities_xml

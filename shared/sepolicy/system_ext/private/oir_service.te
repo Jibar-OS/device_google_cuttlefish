@@ -1,0 +1,25 @@
+# oir_service — app-facing service lookup rules.
+
+# Apps may look up the oir service. Isolated apps excluded (platform
+# neverallow restricts isolated_app_all to a fixed service list).
+# Actual call-level auth happens at the Java layer (SUBMIT_OIR_REQUEST
+# permission in v0.3).
+allow { appdomain -isolated_app_all } oir_service:service_manager find;
+
+# system_server registers the oir service (publishBinderService in onStart).
+allow system_server oir_service:service_manager add;
+
+# v0.6 Phase B — system_server needs getattr on OIR model files so that
+# OIRService can classify capability runnability (java.io.File.isFile()
+# → stat syscall). Without this, every cap with a default-model path is
+# reported MODEL_MISSING in `cmd oir dumpsys capabilities` and through
+# the new IOIRService.isCapabilityRunnable() pre-flight API, regardless
+# of whether the file exists.
+#
+# Read-level access (not exec/map/write) — system_server never loads
+# the model bytes; only oird does. Kept minimal per the sepolicy
+# least-privilege rule of thumb.
+allow system_server oir_model_system_file:dir { search getattr };
+allow system_server oir_model_system_file:file getattr;
+allow system_server oir_model_data_file:dir { search getattr };
+allow system_server oir_model_data_file:file getattr;

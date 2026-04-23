@@ -1,0 +1,25 @@
+# OIR — public SELinux declarations for OpenIntelligenceRuntime.
+# Compiled into system_ext_sepolicy.cil via SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS.
+# Pattern follows rpmb_dev_system (also system_ext, also coredomain daemon).
+
+# Umbrella attribute for all OIR-exposed types.
+attribute oir_service_type;
+
+# Public binder service 'oir' (served by system_server).
+type oir_service, service_manager_type, oir_service_type, app_api_service;
+
+# oird worker process domain. coredomain required for system_ext daemons.
+type oird, domain, coredomain;
+
+# /system_ext/bin/oird executable. system_file_type required for entrypoint.
+type oird_exec, exec_type, system_file_type, file_type;
+
+# Internal binder service 'oir_worker' — only system_server ↔ oird use it.
+type oir_worker_service, service_manager_type;
+
+# OEM-baked models under /product/etc/oir/*.gguf. system_file_type so that
+# init + vendor_init can relabel/manage without tripping coredomain neverallows.
+type oir_model_system_file, file_type, system_file_type;
+
+# Dev-override models under /data/local/oir/*.gguf.
+type oir_model_data_file, data_file_type, file_type, core_data_file_type;

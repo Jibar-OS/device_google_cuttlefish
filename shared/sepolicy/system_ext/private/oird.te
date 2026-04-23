@@ -1,0 +1,21 @@
+# oird private policy — daemon wiring + model file access.
+
+# Daemon domain transition from init.
+init_daemon_domain(oird)
+
+# Binder basics.
+binder_use(oird)
+
+# oird registers oir_worker_service; only system_server can find+call it.
+add_service(oird, oir_worker_service)
+allow system_server oir_worker_service:service_manager find;
+binder_call(system_server, oird)
+binder_call(oird, system_server)
+
+# Model file access. 'map' enables mmap-based loading (llama.cpp fast path).
+allow oird oir_model_system_file:dir { open read search getattr };
+allow oird oir_model_system_file:file { open read getattr map };
+allow oird oir_model_data_file:dir { open read search getattr };
+allow oird oir_model_data_file:file { open read getattr map };
+
+# Models are never executable.
