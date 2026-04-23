@@ -48,6 +48,3 @@ The same pattern (small `device.mk` additions + sepolicy fragments) applies to a
 
 [`github.com/Jibar-OS/JibarOS`](https://github.com/Jibar-OS/JibarOS) — JibarOS OEM bake-in guide.
 
-## Migration status
-
-🚧 Tree migration in progress.
