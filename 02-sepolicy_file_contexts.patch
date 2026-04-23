@@ -1,0 +1,12 @@
+diff --git a/shared/sepolicy/system_ext/private/file_contexts b/shared/sepolicy/system_ext/private/file_contexts
+--- a/shared/sepolicy/system_ext/private/file_contexts
++++ b/shared/sepolicy/system_ext/private/file_contexts
+@@ -32,3 +32,8 @@ is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `
+ /data/secure_storage_system(/.*)?        u:object_r:secure_storage_system_file:s0
+ /data/secure_storage_test_system(/.*)?        u:object_r:secure_storage_system_file:s0
+ /data/secure_storage_wv_system(/.*)?        u:object_r:secure_storage_system_file:s0
++
++# OIR v0.2
++/system_ext/bin/oird                      u:object_r:oird_exec:s0
++/product/etc/oir(/.*)?                    u:object_r:oir_model_system_file:s0
++/data/local/oir(/.*)?                     u:object_r:oir_model_data_file:s0

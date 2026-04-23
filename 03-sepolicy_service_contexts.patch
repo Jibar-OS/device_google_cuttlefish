@@ -1,0 +1,9 @@
+diff --git a/shared/sepolicy/system_ext/private/service_contexts b/shared/sepolicy/system_ext/private/service_contexts
+--- a/shared/sepolicy/system_ext/private/service_contexts
++++ b/shared/sepolicy/system_ext/private/service_contexts
+@@ -1 +1,5 @@
+ android.media.audio.IHalAdapterVendorExtension/default u:object_r:audio_vendor_parameter_parser_service:s0
++
++# OIR v0.2
++oir                           u:object_r:oir_service:s0
++oir_worker                    u:object_r:oir_worker_service:s0
