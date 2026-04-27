@@ -2,7 +2,7 @@ diff --git a/shared/device.mk b/shared/device.mk
 index b31638a..9c0a77d 100644
 --- a/shared/device.mk
 +++ b/shared/device.mk
-@@ -619,3 +619,24 @@ ifeq ($(LOCAL_ENABLE_INIT_DEV_CONFIG),true)
+@@ -619,3 +619,25 @@ ifeq ($(LOCAL_ENABLE_INIT_DEV_CONFIG),true)
      PRODUCT_VENDOR_PROPERTIES += \
          ro.vendor.init_dev_config.path=/vendor/bin/init_dev_config
  endif
@@ -26,4 +26,5 @@ index b31638a..9c0a77d 100644
 +    oir_whisper_tiny_en_model \
 +    oir_siglip_model \
 +    oir_voice_sample_wav \
-+    oir_capabilities_xml
++    oir_capabilities_xml \
++    OirDemo
